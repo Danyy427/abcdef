@@ -1,18 +1,14 @@
-#include "D:/teknofestArduino/main/move.ino"
-#include "D:/teknofestArduino/main/pathfind.ino"
-#include "D:/teknofestArduino/main/pins.ino"
-#include "D:/teknofestArduino/main/ui.ino"
-#include "D:/teknofestArduino/main/features.ino"
-#include "D:/teknofestArduino/main/sensors.ino"
-
-// ABC
+#include "D:/abcdef/Ana Kod/main/move.ino"
+#include "D:/abcdef/Ana Kod/main/pathfind.ino"
+#include "D:/abcdef/Ana Kod/main/pins.ino"
+#include "D:/abcdef/Ana Kod/main/ui.ino"
+#include "D:/abcdef/Ana Kod/main/features.ino"
+#include "D:/abcdef/Ana Kod/main/sensors.ino"
 
 void setup()
 {
-    
 }
 
 void loop()
 {
-    
 }
