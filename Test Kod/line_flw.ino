@@ -1,16 +1,16 @@
-#define IR_SENSOR_RIGHT 8
-#define IR_SENSOR_LEFT 9
+#define IR_SENSOR_RIGHT 9
+#define IR_SENSOR_LEFT 8
 #define MOTOR_SPEED 80
 
 //Right motor
-int enableRightMotor=5;
-int rightMotorPin1=2;
-int rightMotorPin2=3;
+int enableRightMotor=6;
+int rightMotorPin1=7;
+int rightMotorPin2=4;
 
 //Left motor
-int enableLeftMotor=6;
-int leftMotorPin1=7;
-int leftMotorPin2=4;
+int enableLeftMotor=5;
+int leftMotorPin1=2;
+int leftMotorPin2=3;
 
 //Distance Sensor
 const int trigPin = 10;
