@@ -85,7 +85,7 @@ long *getPath(long parent[], long j, long *pathsize)
         a = parent[a];
     }
 
-    *pathsize = k;
+    *pathsize = ++k;
     long *path = (long *)malloc(sizeof(long) * k);
     a = j;
     while (parent[a] != -1)
@@ -93,7 +93,7 @@ long *getPath(long parent[], long j, long *pathsize)
         path[--k] = a;
         a = parent[a];
     }
-
+    path[0] = a;
     return path;
 }
 
