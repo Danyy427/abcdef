@@ -3,6 +3,7 @@
 
 #define INT_MAX 2147483647
 #define INT_MIN -2147483648
+#define XOR(a, b) ((!(a)&&(b))||((a)&&!(b)))
 
 /*
  * Robotun karşılaşabileceği noktalar
@@ -15,6 +16,22 @@ enum PointTypes
     Dropoff,
     Barrier
 };
+
+enum AbsoluteDirections
+{
+	North,
+	East,
+	South,
+	West
+};
+
+enum RelativeDirections
+{
+	Forward,
+	Right,
+	Backward,
+	Left
+}
 
 typedef struct
 {
@@ -155,7 +172,7 @@ long *dijkstra(long **edges, long n, long src)
     return tree;
 }
 
-graph_t *GlobalMap;
+static graph_t *GlobalMap;
 
 /*
  * Kullanılacak haritayı hazırlayan fonksiyon
@@ -226,6 +243,35 @@ void InitializeGlobalMap()
     Connect(GlobalMap, 17, 18, 1);
     Connect(GlobalMap, 18, 19, 1);
     Connect(GlobalMap, 19, 20, 1);
+}
+
+static long CurrentAbsoluteDirection = -1;
+
+void setCurrentDirection(long direction)
+{
+	CurrentAbsoluteDirection = direction;
+}
+
+long GetAbsoluteDirection(point_t *point1, point_t *point2)
+{
+	long c1 = point1->column, c2 = point2->column, r1 = point1->row, r2 = point2->row;
+	if(XOR(c1 != c2, r1 != r2))
+	{
+		return -1;
+	}
+	else if(r1 != r2)
+	{
+		return (r1 - r2) < 0? South : North;
+	}
+	else if(c1 != c2)
+	{
+		return (c1 - c2) < 0? East : West;
+	}
+}
+
+long GetRelativeDirection(long absoluteDirection)
+{
+	return absoluteDirection - CurrentAbsoluteDirection;
 }
 
 #endif
