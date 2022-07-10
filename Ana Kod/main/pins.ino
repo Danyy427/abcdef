@@ -1,3 +1,5 @@
+#ifndef _PINS_
+#define _PINS_
 
 //Line Following Sensors
 #define IR_SENSOR_RIGHT 9
@@ -24,3 +26,5 @@
 
 //Buzzer
 #define buzzer 22
+
+#endif
