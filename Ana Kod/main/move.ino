@@ -1,3 +1,5 @@
+#include "D:/abcdef/Ana Kod/main/pins.ino"
+
 #ifndef _MOVE_
 #define _MOVE_
 
