@@ -3,7 +3,7 @@
 
 #define INT_MAX 2147483647
 #define INT_MIN -2147483648
-#define XOR(a, b) ((!(a)&&(b))||((a)&&!(b)))
+#define XOR(a, b) ((!(a) && (b)) || ((a) && !(b)))
 
 /*
  * Robotun karşılaşabileceği noktalar
@@ -19,19 +19,19 @@ enum PointTypes
 
 enum AbsoluteDirections
 {
-	North,
-	East,
-	South,
-	West
+    North,
+    East,
+    South,
+    West
 };
 
 enum RelativeDirections
 {
-	Forward,
-	Right,
-	Backward,
-	Left
-}
+    Forward,
+    Right,
+    Backward,
+    Left
+};
 
 typedef struct
 {
@@ -249,29 +249,69 @@ static long CurrentAbsoluteDirection = -1;
 
 void setCurrentDirection(long direction)
 {
-	CurrentAbsoluteDirection = direction;
+    CurrentAbsoluteDirection = direction;
 }
 
 long GetAbsoluteDirection(point_t *point1, point_t *point2)
 {
-	long c1 = point1->column, c2 = point2->column, r1 = point1->row, r2 = point2->row;
-	if(XOR(c1 != c2, r1 != r2))
-	{
-		return -1;
-	}
-	else if(r1 != r2)
-	{
-		return (r1 - r2) < 0? South : North;
-	}
-	else if(c1 != c2)
-	{
-		return (c1 - c2) < 0? East : West;
-	}
+    long c1 = point1->column, c2 = point2->column, r1 = point1->row, r2 = point2->row;
+
+    if (!XOR(c1 != c2, r1 != r2))
+    {
+        return -1;
+    }
+    else if (r1 != r2)
+    {
+        return (r1 - r2) < 0 ? South : North;
+    }
+    else if (c1 != c2)
+    {
+        return (c1 - c2) < 0 ? East : West;
+    }
+    else
+    {
+        return -1;
+    }
 }
 
-long GetRelativeDirection(long absoluteDirection)
+long GetRelativeDirection(long absoluteDirection, long currentDirection)
 {
-	return absoluteDirection - CurrentAbsoluteDirection;
+    return absoluteDirection - currentDirection < 0 ? 4 + absoluteDirection - currentDirection : absoluteDirection - currentDirection;
+}
+
+long *GetAbsoluteDirectionPath(long *path, long n)
+{
+    if (CurrentAbsoluteDirection == -1)
+        return 0;
+
+    long *dir = malloc(sizeof(long) * (n - 1));
+
+    for (long i = 0; i < n - 1; i++)
+    {
+        dir[i] = GetAbsoluteDirection(&GlobalMap->vertices[path[i]], &GlobalMap->vertices[path[i + 1]]);
+    }
+
+    return dir;
+}
+
+long *GetRelativeDirectionPath(long *path, long n)
+{
+    if (CurrentAbsoluteDirection == -1)
+        return 0;
+
+    long *dir = malloc(sizeof(long) * (n - 1));
+
+    long tempDirection = CurrentAbsoluteDirection;
+    long absolute = -1;
+
+    for (long i = 0; i < n - 1; i++)
+    {
+        absolute = GetAbsoluteDirection(&GlobalMap->vertices[path[i]], &GlobalMap->vertices[path[i + 1]]);
+        dir[i] = GetRelativeDirection(absolute, tempDirection);
+        tempDirection = absolute;
+    }
+
+    return dir;
 }
 
 #endif
