@@ -284,7 +284,7 @@ long *GetAbsoluteDirectionPath(long *path, long n)
     if (CurrentAbsoluteDirection == -1)
         return 0;
 
-    long *dir = (long*)malloc(sizeof(long) * (n - 1));
+    long *dir = (long *)malloc(sizeof(long) * (n - 1));
 
     for (long i = 0; i < n - 1; i++)
     {
@@ -299,7 +299,7 @@ long *GetRelativeDirectionPath(long *path, long n)
     if (CurrentAbsoluteDirection == -1)
         return 0;
 
-    long *dir = (long*)malloc(sizeof(long) * (n - 1));
+    long *dir = (long *)malloc(sizeof(long) * (n - 1));
 
     long tempDirection = CurrentAbsoluteDirection;
     long absolute = -1;
