@@ -279,7 +279,7 @@ long GetRelativeDirection(long absoluteDirection, long currentDirection)
     return absoluteDirection - currentDirection < 0 ? 4 + absoluteDirection - currentDirection : absoluteDirection - currentDirection;
 }
 
-long *GetAbsoluteDirectionPath(long *path, long n)
+long *GetAbsoluteDirectionPath(graph_t *graph, long *path, long n)
 {
     if (CurrentAbsoluteDirection == -1)
         return 0;
@@ -288,13 +288,13 @@ long *GetAbsoluteDirectionPath(long *path, long n)
 
     for (long i = 0; i < n - 1; i++)
     {
-        dir[i] = GetAbsoluteDirection(&GlobalMap->vertices[path[i]], &GlobalMap->vertices[path[i + 1]]);
+        dir[i] = GetAbsoluteDirection(&graph->vertices[path[i]], &graph->vertices[path[i + 1]]);
     }
 
     return dir;
 }
 
-long *GetRelativeDirectionPath(long *path, long n)
+long *GetRelativeDirectionPath(graph_t *graph, long *path, long n)
 {
     if (CurrentAbsoluteDirection == -1)
         return 0;
@@ -306,7 +306,7 @@ long *GetRelativeDirectionPath(long *path, long n)
 
     for (long i = 0; i < n - 1; i++)
     {
-        absolute = GetAbsoluteDirection(&GlobalMap->vertices[path[i]], &GlobalMap->vertices[path[i + 1]]);
+        absolute = GetAbsoluteDirection(&graph->vertices[path[i]], &graph->vertices[path[i + 1]]);
         dir[i] = GetRelativeDirection(absolute, tempDirection);
         tempDirection = absolute;
     }

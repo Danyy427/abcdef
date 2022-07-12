@@ -48,8 +48,14 @@ void setup()
         long src = route[i];
         long dest = route[i + 1];
         long *list = getPath(dijkstra(graph->edges, 6, src), dest, &k);
-        pathToFollow[i] = GetRelativeDirectionPath(list, k);
+
+        pathToFollow[i] = GetAbsoluteDirectionPath(graph, list, k);
+        long newDirection = pathToFollow[i][k - 2];
+
+        pathToFollow[i] = GetRelativeDirectionPath(graph, list, k);
         pathSizeList[i] = k - 1;
+
+        setCurrentDirection(newDirection);
     }
 }
 
