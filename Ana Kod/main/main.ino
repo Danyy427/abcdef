@@ -66,15 +66,17 @@ void loop()
     if (currentSensorInfo[0] == HIGH || currentSensorInfo[4] == HIGH || pathIterator == 0)
     {
         int listCount = 0, pointCount = 0;
-        long sum = 0;
+        long sum = 0, prevSum = 0;
         for (int i = 0; i < routeLength - 1; i++)
         {
             sum += pathSizeList[i];
             if (pathIterator < sum)
             {
                 listCount = i;
-                pointCount = sum - pathIterator; // ?????????
+                pointCount = pathIterator - prevSum; // ?????????
+                break;
             }
+            prevSum = sum;
         }
 
         int direction = pathToFollow[listCount][pointCount];
