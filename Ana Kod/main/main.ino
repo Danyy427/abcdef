@@ -101,6 +101,9 @@ void loop()
             stopMoving();
         }
         pathIterator++;
+
+        delay(100);
+        return;
     }
 
     long left = currentSensorInfo[1];
