@@ -8,6 +8,7 @@
 static long pathIterator = 0;
 static long **pathToFollow;
 static long *pathSizeList;
+static long pathSizeTotal;
 static long route[5] = {0, 2, 5, 4, 1};
 static long routeLength = 5;
 static graph_t *graph;
@@ -54,6 +55,7 @@ void setup()
 
         pathToFollow[i] = GetRelativeDirectionPath(graph, list, k);
         pathSizeList[i] = k - 1;
+        pathSizeTotal += k - 1;
 
         setCurrentDirection(newDirection);
     }
@@ -62,6 +64,13 @@ void setup()
 void loop()
 {
     GetSensorInfo();
+    if (pathIterator == pathSizeTotal)
+    {
+        while (1)
+        {
+            stopMoving();
+        }
+    }
 
     if (currentSensorInfo[0] == HIGH || currentSensorInfo[4] == HIGH || pathIterator == 0)
     {
