@@ -86,6 +86,24 @@ void loop()
             {
                 GetSensorInfo();
                 goForward();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
         }
         else if (direction == 1)
@@ -94,11 +112,47 @@ void loop()
             {
                 GetSensorInfo();
                 turnRight();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
             while (currentSensorInfo[2] == LOW)
             {
                 GetSensorInfo();
                 turnRight();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
         }
         else if (direction == 2)
@@ -107,6 +161,24 @@ void loop()
             {
                 GetSensorInfo();
                 goBackward();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
         }
         else if (direction == 3)
@@ -115,11 +187,47 @@ void loop()
             {
                 GetSensorInfo();
                 turnLeft();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
             while (currentSensorInfo[2] == LOW)
             {
                 GetSensorInfo();
                 turnLeft();
+                long left = currentSensorInfo[1];
+                long middle = currentSensorInfo[2];
+                long right = currentSensorInfo[3];
+
+                // HIGH = siyah
+                // LOW = beyaz
+                if (left == LOW && middle == HIGH && right == LOW)
+                {
+                    goForward();
+                }
+                else if (left == HIGH && right == LOW)
+                {
+                    turnLeft();
+                }
+                else if (left == LOW && right == HIGH)
+                {
+                    turnRight();
+                }
             }
         }
         else
