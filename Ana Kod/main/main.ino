@@ -66,6 +66,8 @@ void loop()
     GetSensorInfo();
     if (pathIterator == pathSizeTotal)
     {
+        Serial.println(pathIterator);
+        Serial.println(pathSizeTotal);
         while (1)
         {
             stopMoving();
