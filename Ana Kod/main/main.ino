@@ -82,27 +82,45 @@ void loop()
         int direction = pathToFollow[listCount][pointCount];
         if (direction == 0)
         {
-            while (currentSensorInfo[4] == HIGH || currentSensorInfo[0] = HIGH)
+            while (currentSensorInfo[4] == HIGH || currentSensorInfo[0] == HIGH)
+            {
+                GetSensorInfo();
                 goForward();
+            }
         }
         else if (direction == 1)
         {
             while (currentSensorInfo[2] == HIGH)
+            {
+                GetSensorInfo();
                 turnRight();
+            }
             while (currentSensorInfo[2] == LOW)
+            {
+                GetSensorInfo();
                 turnRight();
+            }
         }
         else if (direction == 2)
         {
-            while (currentSensorInfo[4] == LOW || currentSensorInfo[0] = LOW)
+            while (currentSensorInfo[4] == LOW || currentSensorInfo[0] == LOW)
+            {
+                GetSensorInfo();
                 goBackward();
+            }
         }
         else if (direction == 3)
         {
             while (currentSensorInfo[2] == HIGH)
+            {
+                GetSensorInfo();
                 turnLeft();
+            }
             while (currentSensorInfo[2] == LOW)
+            {
+                GetSensorInfo();
                 turnLeft();
+            }
         }
         else
         {
