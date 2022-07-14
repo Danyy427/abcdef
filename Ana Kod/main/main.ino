@@ -59,6 +59,8 @@ void setup()
 
         setCurrentDirection(newDirection);
     }
+
+    pathIterator = 0;
 }
 
 void loop()
@@ -66,8 +68,7 @@ void loop()
     GetSensorInfo();
     if (pathIterator == pathSizeTotal)
     {
-        Serial.println(pathIterator);
-        Serial.println(pathSizeTotal);
+
         while (1)
         {
             stopMoving();
@@ -76,6 +77,9 @@ void loop()
 
     if (currentSensorInfo[0] == HIGH || currentSensorInfo[4] == HIGH || pathIterator == 0)
     {
+        Serial.println(pathIterator);
+        Serial.println(pathSizeTotal);
+
         int listCount = 0, pointCount = 0;
         long sum = 0, prevSum = 0;
         for (int i = 0; i < routeLength - 1; i++)
